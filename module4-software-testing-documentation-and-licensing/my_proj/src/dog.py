@@ -1,4 +1,7 @@
 import datetime as dt
+import json
+import uuid
+from pathlib import Path
 
 from src.animal import Animal
 
@@ -7,8 +10,6 @@ class Dog(Animal):
     num_legs = 4
 
     def __init__(self, age, weight, last_time_fed=None):
-        if age < 0:
-            raise ValueError('age value must be greater than 0')
         if weight < 0:
             raise ValueError('weight value must be greater than 0')
         super().__init__(age)
@@ -39,6 +40,23 @@ class Dog(Animal):
         else:
             return False
 
+    def save_to_json(self, out_path):
+        unique_id = str(uuid.uuid4())
+        f_path = Path(out_path)/f'dog_{unique_id}.json'
+        json_data = {'age': self.age,
+                     'weight': self.weight}
+        with open(f_path, 'w') as f:
+            json.dump(json_data, f)
+        return f_path
+
+    @classmethod
+    def load_from_json(cls, f_path):
+        with open(f_path) as f:
+            json_data = json.load(f)
+        age = json_data['age']
+        weight = json_data['weight']
+        return cls(age, weight)
+
     def __repr__(self):
         return f'Dog(age={self.age}, weight={self.weight})'
 
@@ -50,3 +68,11 @@ class Dog(Animal):
 
     def __lt__(self, other):
         return self.weight < other.weight
+
+
+# dog = Dog(age=5, weight=20)
+# f_path = dog.save_to_json('/tmp')
+# print(f_path)
+
+# dog = Dog.load_from_json(f_path='/tmp/dog_190d3159-fab3-4d8c-8d39-aaff14963860.json')
+# print(dog)
