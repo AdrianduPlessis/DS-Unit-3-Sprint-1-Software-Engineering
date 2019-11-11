@@ -262,9 +262,25 @@ career here, you'll have to answer the following:
 - What, in your opinion, is an important part of code reviews? That is, what is
   something you pay attention to when you review code, and that you appreciate
   when others do the same for your code?
+  '''
+  I think it is extremly important to pay attention to whether the code makes
+  logical sense when you are reading over it. That is the product of good
+  variable names, use of space, layout, commenting, etc. But I think it should
+  start with layout and variable names. As long as the logic makes sense, refining
+  the style can be a relaxing mental break. If the logic isn't apparent, then
+  you'll end up spending as much time to format your code as you spent writing it,
+  and perhaps as much mental energy. 
+  '''
 - We have an awful lot of computers here, and it gets pretty confusing with
   slightly different things running on all of them. How could containers help us
   improve this situation?
+  '''
+  Containers can help insure that we are all running our code in the environment
+  in which it was originally written. All this, while minimizing the size of the
+  files that we need to share. Besides maximizing reproducability, containers also
+  allow code to run on various opperating systems without modification. This all
+  results is streamlined scaling if code needs to be widly deployed.
+  '''
 
 Answer both of these questions (baseline ~5 sentences) here in text.
 
