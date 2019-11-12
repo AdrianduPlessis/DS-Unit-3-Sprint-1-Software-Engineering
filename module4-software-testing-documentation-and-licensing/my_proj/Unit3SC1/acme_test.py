@@ -34,13 +34,21 @@ class AcmeReportTests(unittest.TestCase):
     def test_legal_names(self):
         """Test checks that the generated names for a default batch of products
         are all valid possible names to generate"""
-
-        '''
         products = generate_products()
         for product in products:
-            name = product.name.split()
-        '''
-        pass
+            # Split on space, since it should be the only value besides the adjective and nouns.
+            name_parts = product.name.split(" ")
+            # Confirming that there are only 2 parts implies there was only one space.
+            self.assertEqual((len(name_parts)), 2)
+
+            # Descriptive names for expected name parts
+            first_word = name_parts[0]
+            second_word = name_parts[1]
+
+            # Confirms that the first word is an adjective from the generator list
+            self.assertIn(first_word, ADJECTIVES)
+            # Confirms that the first word is an adjective from the generator list
+            self.assertIn(second_word, NOUNS)
 
 
 if __name__ == '__main__':
