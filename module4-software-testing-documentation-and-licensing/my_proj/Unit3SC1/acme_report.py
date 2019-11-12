@@ -12,8 +12,8 @@ def generate_products(num_products=30):
     products = []
     # Generate and add random products.
     for _ in range(num_products):
-        rand_adjective = sample(ADJECTIVES, 1)
-        rand_noun = sample(NOUNS, 1)
+        rand_adjective = sample(ADJECTIVES, 1)[0]
+        rand_noun = sample(NOUNS, 1)[0]
         rand_name = f'{rand_adjective} {rand_noun}'
 
         rand_price = randint(5, 100)
